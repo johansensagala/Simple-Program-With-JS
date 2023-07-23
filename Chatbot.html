@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100vh;
+        background-color: #e5ddd5;
+      }
+      
+      .message-container {
+        display: flex;
+        justify-content: flex-start;
+        margin: 10px;
+        padding: 10px;
+        background-color: #f1f0f0;
+        border-radius: 10px;
+      }
+      
+      .user-message {
+        margin-left: auto;
+        background-color: #4caf50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="chat-output"></div>
+      <div class="message-container user-message">
+        <input type="text" id="chat-input" />
+        <button onclick="sendMessage()">Kirim</button>
+      </div>
+    </div>
+    
+    <script>
+      const outputDiv = document.getElementById("chat-output");
+      const input = document.getElementById("chat-input");
+      
+      function showMessage(message, user) {
+        const messageContainer = document.createElement("div");
+        messageContainer.classList.add("message-container");
+        if (user === "user") {
+          messageContainer.classList.add("user-message");
+        }
+        
+        const text = document.createTextNode(message);
+        messageContainer.appendChild(text);
+        
+        outputDiv.appendChild(messageContainer);
+        input.value = "";
+      }
+      
+      function sendMessage() {
+        const inputValue = input.value;
+        const today = new Date();
+        const time = today.toLocaleTimeString();
+        const date = today.toLocaleDateString();
+        
+        if (inputValue === "") {
+          return;
+        } else if (inputValue.toLowerCase() === "nama") {
+          showMessage("Hai, nama saya Johansen Sagala.", "bot");
+        } else if (inputValue.toLowerCase() === "tanggal lahir") {
+          showMessage("Saya lahir pada tanggal 5 Juni 2001.", "bot");
+        } else if (inputValue.toLowerCase() === "umur") {
+          const birthdate = new Date("2001-06-05");
+          const ageInMilliseconds = today - birthdate;
+          const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365);
+          showMessage(`Saya berusia ${Math.floor(ageInYears)} tahun.`, "bot");
+        } else if (inputValue.toLowerCase() === "sekolah") {
+          showMessage("Saya tinggal di UNAI.", "bot");
+        } else if (inputValue.toLowerCase().includes("nama saya")) {
+          showMessage(`Hai, ${inputValue.split("nama saya")[1].trim()}., "bot"); } else if (inputValue.toLowerCase() === "waktu") { showMessage(Sekarang jam ${time}., "bot"); } else if (inputValue.toLowerCase() === "hari") { showMessage(Hari ini adalah ${today.toLocaleDateString(undefined, { weekday: 'long' })}., "bot"); } else if (inputValue.toLowerCase() === "tanggal") { showMessage(Tanggal hari ini adalah ${date}., "bot"); } else if (inputValue.toLowerCase() === "bulan") { showMessage(Bulan ini adalah ${today.toLocaleDateString(undefined, { month: 'long' })}., "bot"); } else if (inputValue.toLowerCase() === "tahun") { showMessage(Tahun ini adalah ${today.getFullYear()}., "bot"); } else if (inputValue.toLowerCase() === "tempat tinggal") { showMessage("Saya ada di Bandung.", "bot"); } else if (inputValue.includes("+") || inputValue.includes("-") || inputValue.includes("*") || inputValue.includes("/")) { showMessage(Hasilnya adalah ${eval(inputValue)}.`, "bot");
+        } else {
+          showMessage("Maaf, saya tidak paham apa yang anda maksud.", "bot");
+        }
+          showMessage(inputValue, "user");
+        }
+    </script>
+  </body>
+</html>

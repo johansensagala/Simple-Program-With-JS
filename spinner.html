@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Spinner</title>
+  <style>
+    .spinner {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 2px solid black;
+      overflow: hidden;
+    }
+    
+    .slice {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 100%;
+    }
+    
+    .slice:nth-child(1) { background-color: #ff6666; }
+    .slice:nth-child(2) { background-color: #66ccff; }
+    .slice:nth-child(3) { background-color: #99ff99; }
+    .slice:nth-child(4) { background-color: #ffcc00; }
+    .slice:nth-child(5) { background-color: #cc99ff; }
+    
+    .arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 4px;
+      height: 80px;
+      background-color: black;
+      transform-origin: bottom center;
+      transition: transform 2s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="spinner">
+    <div class="slice">Andi</div>
+    <div class="slice">Budi</div>
+    <div class="slice">Cici</div>
+    <div class="slice">Dimas</div>
+    <div class="slice">Eko</div>
+    <div class="arrow"></div>
+  </div>
+  
+  <button onclick="spin()">Spin</button>
+  
+  <script>
+    function spin() {
+      const spinner = document.querySelector('.spinner');
+      const arrow = document.querySelector('.arrow');
+      
+      const names = ['Andi', 'Budi', 'Cici', 'Dimas', 'Eko'];
+      const angle = 360 / names.length;
+      const randomAngle = Math.floor(Math.random() * names.length) * angle;
+      
+      spinner.style.transform = `rotate(${randomAngle}deg)`;
+      arrow.style.transform = `rotate(${randomAngle + 90}deg)`;
+      
+      setTimeout(() => {
+        const index = Math.floor(randomAngle / angle) % names.length;
+        const selectedName = names[index];
+        alert(`Selected name: ${selectedName}`);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

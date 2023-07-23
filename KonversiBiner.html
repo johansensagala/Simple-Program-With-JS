@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Binary Converter</title>
+</head>
+<body>
+  <input type="text" id="binary" placeholder="Enter a binary number">
+  <button onclick="convertBinaryToDecimal()">Convert to Decimal</button>
+  <output id="decimal"></output>
+  <br>
+  <button onclick="convertDecimalToBinary()">Convert to Binary</button>
+  <output id="binary"></output>
+  <br>
+  <script>
+    function convertBinaryToDecimal() {
+      var binary = document.getElementById("binary").value;
+      var result = 0;
+      var power = 0;
+      for (var i = binary.length - 1; i >= 0; i--) {
+        result += parseInt(binary[i]) * Math.pow(2, power);
+        power++;
+      }
+      document.getElementById("decimal").value = result;
+    }
+    function convertDecimalToBinary() {
+      var decimal = parseInt(document.getElementById("decimal").value);
+      var result = "";
+      while (decimal > 0) {
+        result += decimal % 2;
+        decimal = Math.floor(decimal / 2);
+      }
+      document.getElementById("binary").value = result.split("").reverse().join("");
+    }
+  </script>
+</body>
+</html>

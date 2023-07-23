@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot Sederhana</title>
+  <style>
+    body {
+      background-color: lightblue;
+      text-align: center;
+      font-family: sans-serif;
+    }
+    h1 {
+      color: darkblue;
+    }
+    form {
+      display: inline-block;
+      margin-top: 20px;
+    }
+    input[type="text"] {
+      width: 60%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 2px solid darkblue;
+      border-radius: 4px;
+    }
+    button[type="button"] {
+      width: 20%;
+      background-color: darkblue;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button[type="button"]:hover {
+      background-color: royalblue;
+    }
+    #jawaban {
+      margin-top: 20px;
+      font-size: larger;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chatbot Sederhana</h1>
+  <p>Silakan ajukan pertanyaan:</p>
+  <form>
+    <input type="text" id="pertanyaan">
+    <button type="button" onclick="tanyajawab()">Kirim</button>
+  </form>
+  <p id="jawaban"></p>
+
+  <script>
+    function tanyajawab() {
+      var pertanyaan = document.getElementById("pertanyaan").value;
+      var jawaban = "Maaf, pertanyaan yang Anda ajukan tidak dapat dijawab oleh chatbot ini.";
+      
+      if (pertanyaan.toLowerCase().includes("nama")) {
+        jawaban = "Nama saya adalah Johansen Sagala.";
+      } else if (pertanyaan.toLowerCase().includes("tempat tinggal")) {
+        jawaban = "Saya tinggal di Aek Badak, Tapanuli Selatan, Sumatera Utara.";
+      } else if (pertanyaan.toLowerCase().includes("sekolah")) {
+        jawaban = "Saya berkuliah di UNAI saat ini.";
+      } else if (pertanyaan.toLowerCase().includes("tanggal lahir")) {
+        jawaban = "Saya lahir pada tanggal 5 Juni 2001.";
+      } else if (pertanyaan.toLowerCase().includes("umur")) {
+        // Menghitung umur berdasarkan tanggal lahir
+        var lahir = new Date(2001, 6, 5); // 5 Juni 2001
+        var sekarang = new Date();
+        var umur = sekarang.getFullYear() - lahir.getFullYear();
+        jawaban = "Saya berumur " + umur + " tahun.";
+      } else {
+        // Cek apakah pertanyaan tersebut merupakan operasi hitung
+        var operasi = pertanyaan.match(/\d+ [\+\-\*\/] \d+/);
+        if (operasi) {
+          try {
+            // Evaluate the expression to get the result
+            jawaban = eval(operasi[0]);
+          } catch (e) {
+            jawaban = "Maaf, operasi hitung yang Anda ajukan tidak valid.";
+          }
+        }
+      }
+      
+      // Tampilkan jawaban
+      document.getElementById("jawaban").innerHTML = jawaban;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gambar Buaya</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .buaya {
+      width: 300px;
+      height: 150px;
+      position: relative;
+      overflow: hidden;
+      transform: rotate(20deg);
+    }
+
+    .buaya .head {
+      width: 120px;
+      height: 120px;
+      background-color: #47a89e;
+      position: absolute;
+      border-radius: 50%;
+      top: 15px;
+      left: 40px;
+    }
+
+    .buaya .eye {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      position: absolute;
+      border-radius: 50%;
+      top: 50px;
+      left: 70px;
+      transform: rotate(-45deg);
+      animation: blink 5s infinite;
+    }
+
+    .buaya .eye::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background-color: #114f4f;
+      position: absolute;
+      border-radius: 50%;
+      top: 6px;
+      left: 6px;
+    }
+
+    .buaya .body {
+      width: 200px;
+      height: 150px;
+      background-color: #47a89e;
+      position: absolute;
+      left: 80px;
+      top: 15px;
+      border-radius: 50%;
+    }
+
+    .buaya .body::before {
+      content: '';
+      width: 60px;
+      height: 30px;
+      background-color: #114f4f;
+      position: absolute;
+      top: 10px;
+      right: -30px;
+      transform: rotate(15deg);
+      border-radius: 50%;
+    }
+
+    .buaya .body::after {
+      content: '';
+      width: 60px;
+      height: 30px;
+      background-color: #114f4f;
+      position: absolute;
+      bottom: 10px;
+      right: -30px;
+      transform: rotate(-15deg);
+      border-radius: 50%;
+    }
+
+    .buaya .tail {
+      width: 180px;
+      height: 80px;
+      background-color: #47a89e;
+      position: absolute;
+      bottom: 20px;
+      right: -80px;
+      border-radius: 50% 0 0 50%;
+    }
+
+    .buaya .tail::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      background-color: #114f4f;
+      position: absolute;
+      top: 10px;
+      right: -40px;
+      border-radius: 50%;
+    }
+
+    .buaya .tail::after {
+      content: '';
+      width: 40px;
+      height: 40px;
+      background-color: #114f4f;
+      position: absolute;
+      bottom: 10px;
+      right: -40px;
+      border-radius: 50%;
+    }
+
+    @keyframes blink {
+      0%, 80%, 100% { opacity: 1; }
+      90%, 95% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="buaya">
+      <div class="head"></div>
+      <div class="eye"></div>
+      <div class="body"></div>
+      <div class="tail"></div>
+    </div>
+  </div>
+</body>
+</html>
